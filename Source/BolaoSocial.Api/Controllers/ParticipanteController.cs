@@ -4,7 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using BolaoSocial.Shared;
 using BolaoSocial.Shared.Contracts;
-using BolaoSocial.Shared.Models;
+using BolaoSocial.Shared.Entities;
 using BolaoSocial.Shared.Repositories;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;

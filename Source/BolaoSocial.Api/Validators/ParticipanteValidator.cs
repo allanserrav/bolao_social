@@ -1,4 +1,4 @@
-﻿using BolaoSocial.Shared.Models;
+﻿using BolaoSocial.Shared.Entities;
 using FluentValidation;
 using System;
 using System.Collections.Generic;
@@ -9,7 +9,7 @@ namespace BolaoSocial.Api.Validators
 {
     public class ParticipanteValidator : AbstractValidator<Participante>
     {
-        protected ParticipanteValidator()
+        public ParticipanteValidator()
         {
         }
     }

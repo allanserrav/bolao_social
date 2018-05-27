@@ -19,7 +19,7 @@ namespace BolaoSocial.Api.Filters
             var executed = await next();
             if (executed.Exception != null && !executed.ExceptionHandled)
             {
-                context.Result = new BadRequestObjectResult(context.ModelState);
+                context.Result = new BadRequestObjectResult(executed.Exception);
             }
         }
     }

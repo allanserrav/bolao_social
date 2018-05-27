@@ -3,7 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace BolaoSocial.Shared.Models
+namespace BolaoSocial.Shared.Entities
 {
     public class Base : IModel
     {

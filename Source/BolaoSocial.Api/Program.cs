@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using BolaoSocial.Shared.Models;
+using BolaoSocial.Shared.Entities;
 using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Hosting;
 

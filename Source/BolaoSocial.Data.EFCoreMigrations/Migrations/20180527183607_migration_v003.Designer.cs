@@ -12,9 +12,10 @@ using System;
 namespace BolaoSocial.Data.EFCoreMigrations.Migrations
 {
     [DbContext(typeof(EFDataContext))]
-    partial class EFDataContextModelSnapshot : ModelSnapshot
+    [Migration("20180527183607_migration_v003")]
+    partial class migration_v003
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -100,9 +101,11 @@ namespace BolaoSocial.Data.EFCoreMigrations.Migrations
 
                     b.Property<string>("Localizacao");
 
-                    b.Property<bool>("ObjDesabilitado");
+                    b.Property<string>("Nome")
+                        .IsRequired()
+                        .HasMaxLength(200);
 
-                    b.Property<string>("Observacao");
+                    b.Property<bool>("ObjDesabilitado");
 
                     b.Property<bool>("PermiteSubEvento");
 

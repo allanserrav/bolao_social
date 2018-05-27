@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using BolaoSocial.Shared.Contracts;
-using BolaoSocial.Shared.Models;
+using BolaoSocial.Shared.Entities;
 using BolaoSocial.Shared.Repositories;
 using BolaoSocial.Shared.Services;
 using Microsoft.AspNetCore.Http;
@@ -23,7 +23,7 @@ namespace BolaoSocial.Api.Controllers
         }
 
         // GET: api/competicao/5
-        [HttpGet("{id}", Name = "Get")]
+        [HttpGet("{id}")]
         public async Task<IActionResult> Get(int id)
         {
             var db = new CompeticaoRepository(Service.Unit);
@@ -62,6 +62,6 @@ namespace BolaoSocial.Api.Controllers
         {
             var db = new CompeticaoRepository(Service.Unit);
             await db.Delete(id);
-        }        
+        }
     }
 }

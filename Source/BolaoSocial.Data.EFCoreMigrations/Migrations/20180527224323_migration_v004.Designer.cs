@@ -12,9 +12,10 @@ using System;
 namespace BolaoSocial.Data.EFCoreMigrations.Migrations
 {
     [DbContext(typeof(EFDataContext))]
-    partial class EFDataContextModelSnapshot : ModelSnapshot
+    [Migration("20180527224323_migration_v004")]
+    partial class migration_v004
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

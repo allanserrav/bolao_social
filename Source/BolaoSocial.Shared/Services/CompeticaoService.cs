@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
 using BolaoSocial.Shared.Contracts;
-using BolaoSocial.Shared.Models;
+using BolaoSocial.Shared.Entities;
 using BolaoSocial.Shared.Repositories;
 
 namespace BolaoSocial.Shared.Services

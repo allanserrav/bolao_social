@@ -1,5 +1,5 @@
 ﻿using BolaoSocial.Shared.Contracts;
-using BolaoSocial.Shared.Models;
+using BolaoSocial.Shared.Entities;
 using System;
 using System.Collections.Generic;
 using System.Text;

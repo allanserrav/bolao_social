@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 
-namespace BolaoSocial.Shared.Models
+namespace BolaoSocial.Shared.Entities
 {
     public class Competicao : Base
     {

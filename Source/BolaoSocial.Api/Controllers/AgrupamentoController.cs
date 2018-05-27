@@ -1,11 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using BolaoSocial.Shared.Models;
+﻿using System.Threading.Tasks;
+using BolaoSocial.Shared.Entities;
 using BolaoSocial.Shared.Repositories;
 using BolaoSocial.Shared.Services;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace BolaoSocial.Api.Controllers
@@ -21,7 +17,7 @@ namespace BolaoSocial.Api.Controllers
             Service = service;
         }
 
-        [HttpGet("{id}", Name = "Get")]
+        [HttpGet("{id}")]
         public async Task<IActionResult> Get(int id)
         {
             var db = new AgrupamentoRepository(Service.Unit);
@@ -37,18 +33,20 @@ namespace BolaoSocial.Api.Controllers
             return Ok();
         }
 
-        [HttpPut("{id}")]
-        [Route("nome")]
-        public async Task UpdateNome(int id, [FromBody]string nome)
+        [HttpPut]
+        [Route("nome/{id}")]
+        public async Task<IActionResult> UpdateNome(int id, [FromBody]string nome)
         {
             await Service.UpdateNome(id, nome);
+            return Ok();
         }
 
         [HttpDelete("{id}")]
-        public async Task Delete(int id)
+        public async Task<IActionResult> Delete(int id)
         {
             var db = new AgrupamentoRepository(Service.Unit);
             await db.Delete(id);
+            return Ok();
         }
     }
 }

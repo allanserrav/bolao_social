@@ -1,20 +1,21 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Threading.Tasks;
 
-namespace BolaoSocial.Shared.Models
+namespace BolaoSocial.Shared.Entities
 {
     public class Evento : Base
     {
-        public string Nome { get; set; }
+        public string Observacao { get; set; }
 
         public Evento EventoPai { get; set; }
+
+        public EventoType Tipo { get; set; }
 
         public Competicao Competicao { get; set; }
 
         public IEnumerable<EventoParticipante> Participantes { get; set; }
 
-        public IEnumerable<Agrupamento> Agrupamentos { get; set; }
+        public IEnumerable<EventoAgrupamento> Agrupamentos { get; set; }
 
         public bool PermiteSubEvento { get; set; }
 

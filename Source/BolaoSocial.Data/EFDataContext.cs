@@ -1,5 +1,5 @@
 ﻿using BolaoSocial.Shared.Contracts;
-using BolaoSocial.Shared.Models;
+using BolaoSocial.Shared.Entities;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using System.Linq;
@@ -23,10 +23,17 @@ namespace BolaoSocial.Data
             return SaveChangesAsync();
         }
 
+        Task IDataWrite.Attach<TModel>(TModel model)
+        {
+            var set = this.Set<TModel>();
+            set.Attach(model);
+            return Task.CompletedTask;
+        }
+
         Task IDataWrite.Delete<TModel>(TModel model)
         {
             Remove(model);
-            return Task.CompletedTask;
+            return SaveChangesAsync();
         }
 
         Task<int> IDataWrite.Update<TModel>(TModel model)
@@ -78,6 +85,10 @@ namespace BolaoSocial.Data
                 b.Property(e => e.Nome)
                     .HasMaxLength(200)
                     .IsRequired();
+
+                b.HasMany(e => e.Eventos)
+                    .WithOne(e => e.Agrupamento)
+                    ;
             });
 
             modelBuilder.Entity<Competicao>(b =>
@@ -100,9 +111,7 @@ namespace BolaoSocial.Data
                 b.ToTable("evento");
                 HasBaseEntidade(b, true, true, true);
 
-                b.Property(e => e.Nome)
-                    .HasMaxLength(200)
-                    .IsRequired();
+                b.Property(e => e.Observacao);
                 b.HasOne(e => e.EventoPai);
                 b.HasOne(e => e.Competicao);
                 b.HasMany(e => e.Participantes)
@@ -116,6 +125,8 @@ namespace BolaoSocial.Data
                 b.Property(e => e.Horario);
                 b.Property(e => e.Cancelado);
                 b.Property(e => e.Processado);
+                b.Property(e => e.Tipo)
+                    .IsRequired();
             });
 
             modelBuilder.Entity<Participante>(b =>
@@ -126,13 +137,21 @@ namespace BolaoSocial.Data
                 b.Property(e => e.Nome);
             });
 
-            modelBuilder.Entity<EventoParticipante>(b =>
+            modelBuilder.Entity<EventoAgrupamento>(b =>
             {
-                b.ToTable("participante_evento");
+                b.ToTable("evento_agrupamento");
                 HasBaseEntidade(b, true, true, true);
 
-                b.HasOne(e => e.Participante);
-                b.HasOne(e => e.Evento);
+                b.Property(e => e.Ordem);
+            });
+
+            modelBuilder.Entity<EventoParticipante>(b =>
+            {
+                b.ToTable("evento_participante");
+                HasBaseEntidade(b, true, true, true);
+
+                //b.HasOne(e => e.Participante);
+                //b.HasOne(e => e.Evento);
 
                 b.Property(e => e.Resultado);
             });

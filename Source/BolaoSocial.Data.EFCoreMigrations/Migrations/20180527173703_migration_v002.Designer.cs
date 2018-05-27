@@ -12,9 +12,10 @@ using System;
 namespace BolaoSocial.Data.EFCoreMigrations.Migrations
 {
     [DbContext(typeof(EFDataContext))]
-    partial class EFDataContextModelSnapshot : ModelSnapshot
+    [Migration("20180527173703_migration_v002")]
+    partial class migration_v002
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -32,6 +33,8 @@ namespace BolaoSocial.Data.EFCoreMigrations.Migrations
                     b.Property<DateTime>("CreatedOn")
                         .ValueGeneratedOnAdd();
 
+                    b.Property<int?>("EventoId");
+
                     b.Property<string>("Nome")
                         .IsRequired()
                         .HasMaxLength(200);
@@ -45,6 +48,8 @@ namespace BolaoSocial.Data.EFCoreMigrations.Migrations
                     b.HasIndex("Codigo")
                         .IsUnique()
                         .HasFilter("[Codigo] IS NOT NULL");
+
+                    b.HasIndex("EventoId");
 
                     b.ToTable("agrupamento");
                 });
@@ -100,9 +105,11 @@ namespace BolaoSocial.Data.EFCoreMigrations.Migrations
 
                     b.Property<string>("Localizacao");
 
-                    b.Property<bool>("ObjDesabilitado");
+                    b.Property<string>("Nome")
+                        .IsRequired()
+                        .HasMaxLength(200);
 
-                    b.Property<string>("Observacao");
+                    b.Property<bool>("ObjDesabilitado");
 
                     b.Property<bool>("PermiteSubEvento");
 
@@ -123,40 +130,6 @@ namespace BolaoSocial.Data.EFCoreMigrations.Migrations
                     b.HasIndex("EventoPaiId");
 
                     b.ToTable("evento");
-                });
-
-            modelBuilder.Entity("BolaoSocial.Shared.Entities.EventoAgrupamento", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd();
-
-                    b.Property<int?>("AgrupamentoId");
-
-                    b.Property<string>("Codigo")
-                        .HasMaxLength(20);
-
-                    b.Property<DateTime>("CreatedOn")
-                        .ValueGeneratedOnAdd();
-
-                    b.Property<int?>("EventoId");
-
-                    b.Property<bool>("ObjDesabilitado");
-
-                    b.Property<int>("Ordem");
-
-                    b.Property<DateTime?>("UpdatedOn");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("AgrupamentoId");
-
-                    b.HasIndex("Codigo")
-                        .IsUnique()
-                        .HasFilter("[Codigo] IS NOT NULL");
-
-                    b.HasIndex("EventoId");
-
-                    b.ToTable("evento_agrupamento");
                 });
 
             modelBuilder.Entity("BolaoSocial.Shared.Entities.EventoParticipante", b =>
@@ -190,7 +163,7 @@ namespace BolaoSocial.Data.EFCoreMigrations.Migrations
 
                     b.HasIndex("ParticipanteId");
 
-                    b.ToTable("evento_participante");
+                    b.ToTable("participante_evento");
                 });
 
             modelBuilder.Entity("BolaoSocial.Shared.Entities.PalpiteEvento", b =>
@@ -347,6 +320,13 @@ namespace BolaoSocial.Data.EFCoreMigrations.Migrations
                     b.ToTable("usuario");
                 });
 
+            modelBuilder.Entity("BolaoSocial.Shared.Entities.Agrupamento", b =>
+                {
+                    b.HasOne("BolaoSocial.Shared.Entities.Evento")
+                        .WithMany("Agrupamentos")
+                        .HasForeignKey("EventoId");
+                });
+
             modelBuilder.Entity("BolaoSocial.Shared.Entities.Evento", b =>
                 {
                     b.HasOne("BolaoSocial.Shared.Entities.Competicao", "Competicao")
@@ -356,17 +336,6 @@ namespace BolaoSocial.Data.EFCoreMigrations.Migrations
                     b.HasOne("BolaoSocial.Shared.Entities.Evento", "EventoPai")
                         .WithMany()
                         .HasForeignKey("EventoPaiId");
-                });
-
-            modelBuilder.Entity("BolaoSocial.Shared.Entities.EventoAgrupamento", b =>
-                {
-                    b.HasOne("BolaoSocial.Shared.Entities.Agrupamento", "Agrupamento")
-                        .WithMany("Eventos")
-                        .HasForeignKey("AgrupamentoId");
-
-                    b.HasOne("BolaoSocial.Shared.Entities.Evento", "Evento")
-                        .WithMany("Agrupamentos")
-                        .HasForeignKey("EventoId");
                 });
 
             modelBuilder.Entity("BolaoSocial.Shared.Entities.EventoParticipante", b =>

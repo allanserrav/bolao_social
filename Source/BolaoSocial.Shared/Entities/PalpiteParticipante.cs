@@ -1,4 +1,4 @@
-﻿namespace BolaoSocial.Shared.Models
+﻿namespace BolaoSocial.Shared.Entities
 {
     public class PalpiteParticipante : Base
     {

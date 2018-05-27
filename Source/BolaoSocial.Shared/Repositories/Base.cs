@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace BolaoSocial.Shared.Repositories
 {
     public abstract class Base<TModel>
-        where TModel : Models.Base, IModel
+        where TModel : Entities.Base, IModel
     {
         public Base(IUnitOfWork unit)
         {
@@ -34,9 +34,11 @@ namespace BolaoSocial.Shared.Repositories
             return Reader.Find<TModel>(codigo);
         }
 
+        protected virtual Task PreAdd(TModel data) { return Task.CompletedTask; }
         public async Task Add(TModel data)
         {
             data.CreatedOn = data.CreatedOn.Equals(DateTime.MinValue) ? DateTime.Now : data.CreatedOn;
+            await PreAdd(data);
             await Writer.Add(data);
         }
 

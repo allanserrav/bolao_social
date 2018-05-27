@@ -1,4 +1,4 @@
-﻿using BolaoSocial.Shared.Models;
+﻿using BolaoSocial.Shared.Entities;
 using FluentValidation;
 using FluentValidation.Validators;
 using System;

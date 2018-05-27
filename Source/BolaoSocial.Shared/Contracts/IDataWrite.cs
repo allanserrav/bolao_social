@@ -16,5 +16,8 @@ namespace BolaoSocial.Shared.Contracts
 
         Task<int> Update<TModel>(TModel model)
             where TModel : class, IModel;
+
+        Task Attach<TModel>(TModel model)
+            where TModel : class, IModel;
     }
 }

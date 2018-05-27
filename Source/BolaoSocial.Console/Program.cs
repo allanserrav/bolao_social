@@ -1,4 +1,4 @@
-﻿using BolaoSocial.Shared.Models;
+﻿using BolaoSocial.Shared.Entities;
 using System;
 using System.Collections.Generic;
 
@@ -37,11 +37,11 @@ namespace BolaoSocial.Console
                         new EventoParticipante { Participante = participantes[0] },
                         new EventoParticipante { Participante = participantes[1] },
                     },
-                    Agrupamentos = new List<Agrupamento>
-                    {
-                        primeiraRodada,
-                        grupoA,
-                    },
+                    //Agrupamentos = new List<Agrupamento>
+                    //{
+                    //    primeiraRodada,
+                    //    grupoA,
+                    //},
                     Horario = new DateTime(2018, 6, 14, 12, 0, 0),
                     Localizacao = "Olímpico Lujniki",
 
@@ -54,11 +54,11 @@ namespace BolaoSocial.Console
                         new EventoParticipante { Participante = participantes[2] },
                         new EventoParticipante { Participante = participantes[3] },
                     },
-                    Agrupamentos = new List<Agrupamento>
-                    {
-                        primeiraRodada,
-                        grupoA,
-                    },
+                    //Agrupamentos = new List<Agrupamento>
+                    //{
+                    //    primeiraRodada,
+                    //    grupoA,
+                    //},
                     Horario = new DateTime(2018, 6, 15, 9, 0, 0),
                     Localizacao = "Ecaterimburgo",
                 },
@@ -70,11 +70,11 @@ namespace BolaoSocial.Console
                         new EventoParticipante { Participante = participantes[4] },
                         new EventoParticipante { Participante = participantes[5] },
                     },
-                    Agrupamentos = new List<Agrupamento>
-                    {
-                        primeiraRodada,
-                        grupoE,
-                    },
+                    //Agrupamentos = new List<Agrupamento>
+                    //{
+                    //    primeiraRodada,
+                    //    grupoE,
+                    //},
                     Horario = new DateTime(2018, 6, 17, 15, 0, 0),
                     Localizacao = "Rostov",
                 },

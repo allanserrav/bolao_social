@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace BolaoSocial.Shared.Models
+namespace BolaoSocial.Shared.Entities
 {
     public class PalpiteEvento : Base
     {
