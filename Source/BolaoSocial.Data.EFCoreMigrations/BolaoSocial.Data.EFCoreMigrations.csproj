@@ -1,0 +1,52 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.0</TargetFramework>
+    <ApplicationIcon />
+    <OutputType>Exe</OutputType>
+    <StartupObject />
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="Linked\EFDataContext.cs" />
+    <Compile Remove="Migrations\20180525195621_migration1.cs" />
+    <Compile Remove="Migrations\20180525202305_v001.cs" />
+    <Compile Remove="Migrations\20180525212955_v001.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Include="..\BolaoSocial.Data\EFDataContext.cs" Link="Linked\EFDataContext.cs" />
+    <Compile Include="..\BolaoSocial.Data\EFTransaction.cs" Link="Linked\EFTransaction.cs" />
+    <Compile Include="..\BolaoSocial.Data\EFUnitOfWork.cs" Link="Linked\EFUnitOfWork.cs" />
+    <Compile Include="..\BolaoSocial.Data\IncludeAll.cs" Link="Linked\IncludeAll.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="2.0.3" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="2.0.3" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="2.0.3" />
+    <PackageReference Include="Microsoft.Extensions.Configuration" Version="2.0.2" />
+    <PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="2.0.2" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\BolaoSocial.Shared\BolaoSocial.Shared.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <DotNetCliToolReference Include="Microsoft.EntityFrameworkCore.Tools.DotNet">
+      <Version>1.0.0-*</Version>
+    </DotNetCliToolReference>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Linked\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="appsettings.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
+</Project>
